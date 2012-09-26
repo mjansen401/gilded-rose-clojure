@@ -61,4 +61,4 @@ never alters.
 Inspiration for this kata came from the Ruby version, which you can find at:
 <http://github.com/professor/GildedRose>
 
-Original Source: <http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx>
+Original Source: <http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/>
