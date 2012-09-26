@@ -36,11 +36,17 @@
       :else (merge item {:sell-in (dec (:sell-in item))})))
   items)))
 
-(defn update-current-inventory []
-  [
-    {:name "+5 Dexterity Vest" :sell-in 10 :quality 20}
-    {:name "Aged Brie" :sell-in 2 :quality 0}
-    {:name "Elixir of the Mongoose" :sell-in 5 :quality 7}
-    {:name "Sulfuras, Hand of Ragnaros" :sell-in 0 :quality 80}
-    {:name "Backstage passes to a TAFKAL80ETC concert" :sell-in 15 :quality 20}
-  ])
+(defn item [item-name, sell-in, quality]
+  {:name item-name, :sell-in sell-in, :quality quality})
+
+(defn update-current-inventory[]
+  (let [inventory 
+    [
+      (item "+5 Dexterity Vest" 10 20)
+      (item "Aged Brie" 2 0)
+      (item "Elixir of the Mongoose" 5 7)
+      (item "Sulfuras, Hand of Ragnaros" 0 80)
+      (item "Backstage passes to a TAFKAL80ETC concert" 15 20)
+    ]]
+    (update-quality inventory)
+    ))
