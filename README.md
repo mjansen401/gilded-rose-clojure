@@ -61,6 +61,6 @@ Original Source: <http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-ro
 
 ### Gilded Rose In Other Languages
 
-Ruby - <http://github.com/professor/GildedRose>
-JavaScript - <https://github.com/guyroyse/gilded-rose-javascript>
-C# - <https://github.com/NotMyself/GildedRose>
+  - Ruby - <http://github.com/professor/GildedRose>
+  - JavaScript - <https://github.com/guyroyse/gilded-rose-javascript>
+  - C# - <https://github.com/NotMyself/GildedRose>
