@@ -23,18 +23,9 @@
         (merge item {:quality (dec (:quality item))})
       :else item))
   (map (fn [item]
-    (cond
-      (= "Aged Brie" (:name item))
+      (if (not= "Sulfuras, Hand of Ragnaros" (:name item))
         (merge item {:sell-in (dec (:sell-in item))})
-      (= "Sulfuras, Hand of Ragnaros" (:name item))
-        item
-      (= "+5 Dexterity Vest" (:name item))
-        (merge item {:sell-in (dec (:sell-in item))})
-      (= "Backstage passes to a TAFKAL80ETC concert" (:name item))
-        (merge item {:sell-in (dec (:sell-in item))})
-      (= "Elixir of the Mongoose" (:name item))
-        (merge item {:sell-in (dec (:sell-in item))})
-      :else (merge item {:sell-in (dec (:sell-in item))})))
+        item))
   items)))
 
 (defn item [item-name, sell-in, quality]
