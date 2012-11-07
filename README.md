@@ -64,3 +64,4 @@ Original Source: <http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-ro
   - Ruby - <http://github.com/professor/GildedRose>
   - JavaScript - <https://github.com/guyroyse/gilded-rose-javascript>
   - C# - <https://github.com/NotMyself/GildedRose>
+  - Java - <https://github.com/sandromancuso/gilded_rose_kata>
