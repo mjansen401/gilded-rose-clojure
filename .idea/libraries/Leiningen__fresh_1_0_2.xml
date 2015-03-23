@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: fresh:1.0.2">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/fresh/fresh/1.0.2/fresh-1.0.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
