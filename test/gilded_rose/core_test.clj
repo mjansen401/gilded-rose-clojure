@@ -2,21 +2,27 @@
   (:require [gilded-rose.core :refer :all]
             [clojure.test :refer :all]))
 
-;; (def any-item (partial item "+5 Dexterity Vest"))
-;; (def smelly-cheese (partial item "Aged Brie"))
-;; (def sulfuras (partial item "Sulfuras, Hand of Ragnaros"))
-;; (def backstage-pass (partial item "Backstage passes to a TAFKAL80ETC concert"))
+(def any-item (partial item "+5 Dexterity Vest"))
+(def smelly-cheese (partial item "Aged Brie"))
+(def sulfuras (partial item "Sulfuras, Hand of Ragnaros"))
+(def backstage-pass (partial item "Backstage passes to a TAFKAL80ETC concert"))
 
-;; (defn iterate-updated
-;;   "Create a lazy iterator that will contain recursive updates for an item"
-;;   [item]
-;;   (let [update-fn (fn [i] (first (update-quality [i])))]
-;;     (iterate update-fn item)))
+(defn iterate-updated
+  "Create a lazy iterator that will contain recursive updates for an item"
+  [item]
+  (let [update-fn (fn [i] (first (update-quality [i])))]
+    (iterate update-fn item)))
 
-;; (defn item-after
-;;   "Get the item after n days"
-;;   [item days]
-;;   (last (take (+ days 1) (iterate-updated item))))
+(defn item-after
+  "Get the item after n days"
+  [item days]
+  (last (take (+ days 1) (iterate-updated item))))
+
+(defn quality-history [item days]
+  (map :quality (take days (iterate-updated item))))
+
+
+
 
 ;; (describe "a generic item"
 ;;           (it "should decrease quality every day"
