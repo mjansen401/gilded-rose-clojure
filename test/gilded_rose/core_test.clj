@@ -30,12 +30,7 @@
   (testing "should keep the same quality forever"
     (is (= [60 60 60] (quality-history (sulfuras 1 60) 3)))))
 
-;; ;; - "Backstage passes", like aged brie, increases in quality as it's sell-in
-;; ;; value approaches; quality increases by 2 when there are 10 days or less
-;; ;; and by 3 when there are 5 days or less but quality drops to 0 after the
-;; ;; concert
-;; (describe "Backstage pass,"
-;;           (it "increases quality over time")
-;;           (it "increases quality by 2 the day 10 to 5 before sell-in")
-;;           (it "increases quality by 3 the day 5 to 0 before sell-in")
-;;           (it "quality is 0 after sell-in date"))
+(deftest a-backstage-pass
+  (testing "should increase value in steps until sell-in and the drop to 0"
+    (is (= [1 2 3 5 7 9 11 13 16 19 22 25 28 0 0]
+           (quality-history (backstage-pass 12 1) 15)))))
