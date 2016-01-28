@@ -7,43 +7,28 @@
 (def sulfuras (partial item "Sulfuras, Hand of Ragnaros"))
 (def backstage-pass (partial item "Backstage passes to a TAFKAL80ETC concert"))
 
-(defn iterate-updated
-  "Create a lazy iterator that will contain recursive updates for an item"
-  [item]
-  (let [update-fn (fn [i] (first (update-quality [i])))]
-    (iterate update-fn item)))
+(defn- iterate-updated [item]
+  (let [update-fn (fn [i] (first (update-quality [i])))] (iterate update-fn item)))
 
-(defn item-after
-  "Get the item after n days"
-  [item days]
-  (last (take (+ days 1) (iterate-updated item))))
+(defn- item-after [item days] (last (take (+ days 1) (iterate-updated item))))
 
-(defn quality-history [item days]
+(defn- quality-history [item days]
   (map :quality (take days (iterate-updated item))))
 
+(deftest a-generic-item
+    (testing "should decrease quality by 1 every day"
+      (is (= [5 4 3 2 1] (quality-history (any-item 5 5) 5))))
+    (testing "should decrease quality by 2 after sell-in date"
+      (is (= [2 1 0 -2 -4 -6] (quality-history (any-item 2 2) 6)))))
 
+(deftest a-smelly-cheese
+  (testing "should increase quality the older it gets"
+    (is (= [2 3 4 5] (quality-history (smelly-cheese 2 2) 4)))
+    (is (= [48 49 50 50 50] (quality-history (smelly-cheese 2 48) 5)))))
 
-
-;; (describe "a generic item"
-;;           (it "should decrease quality every day"
-;;               (let [item (item-after (any-item 5 8) 3)]
-;;                 (should-be-same 5 (:quality item))))
-;;           (it "should decrease with 2 pts after expiry"
-;;               (let [item (item-after (any-item 2 9) 4)]
-;;                 (should-be-same 3 (:quality item)))))
-;; (describe "brie"
-;;           (it "increases quality the older it gets"
-;;               (let [brie (item-after (smelly-cheese 5 5) 10)]
-;;                 (should-be-same 15 (:quality brie))))
-;;           (it "can only increase to max 50"
-;;               (let [brie (item-after (smelly-cheese 5 49) 5)]
-;;                 (should-be-same 50 (:quality brie)))))
-
-;; (describe "Sulfuras, Hand Of Ragnaros"
-;;           (it "will keep quality forever"
-;;               (let [item (item-after (sulfuras 5 5) 10)]
-;;                 (should-be-same 5 (:quality item)))))
-
+(deftest a-sulfuras
+  (testing "should keep the same quality forever"
+    (is (= [60 60 60] (quality-history (sulfuras 1 60) 3)))))
 
 ;; ;; - "Backstage passes", like aged brie, increases in quality as it's sell-in
 ;; ;; value approaches; quality increases by 2 when there are 10 days or less
