@@ -35,4 +35,3 @@
   (testing "should increase value in steps until sell-in and the drop to 0"
     (is (= [1 2 3 5 7 9 11 13 16 19 22 25 28 0 0]
            (quality-history (backstage-pass 12 1) 15)))))
-

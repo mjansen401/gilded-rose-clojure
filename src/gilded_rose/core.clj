@@ -24,6 +24,14 @@
   (let [quality-change (if (> 0 (:sell-in item)) 2 1)]
     (update item :quality #(- % quality-change))))
 
+(defmethod update-item-quality :backstage update-backstage-item [item]
+  (let [sell-in (:sell-in item)]
+    (cond
+      (< sell-in 0) (assoc item :quality 0)
+      (< sell-in 5) (update item :quality (partial + 3))
+      (< sell-in 10) (update item :quality (partial + 2))
+      :else (update item :quality inc))))
+
 (defn update-quality
   "Calculate quality and update sell-in for a set of items"
   [items]
